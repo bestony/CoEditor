@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <meta name="charset" content="utf-8">
+    <title>运营编辑器</title>
+    <link rel="stylesheet" href="css/editormd.min.css" />
+
+</head>
+
+<body>
+    <h1 style='font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;text-align: center;'>运营Markdown编辑器</h1>
+    <div id="editormd">
+
+        <textarea style="display:none;">![运营MarkDown编辑器](https://ooo.0o0.ooo/2017/01/25/588807fc42cc2.png)
+# 欢迎来到 运营Markdown编辑器
+此工具为方便非程序猿在使用`Markdown`时能够实现一些运营常用手段而制作。
+
+### 特色功能
+1. 满足运营者常用功能需求(H1-H6)
+2. 提供插入新窗口打开连接的功能。
+
+### FeedBack
+Send Mail To `xiqingongzi@gmail.com`</textarea>
+    </div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/editormd.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var editor = editormd("editormd", {
+            width: "90%",
+            height: 768,
+            editorTheme: "xq-light",
+            path: "lib/",
+            toolbarIcons: function() {
+                return ["undo", "redo", "|",
+                    "bold", "del", "italic", "quote", "|",
+                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
+                    "list-ul", "list-ol", "hr", "|",
+                    "link", "image", "code", "preformatted-text", "code-block", "table", "html-entities", "|",
+                    "goto-line", "watch", "preview", "fullscreen", "clear", "search", "||",
+                    "help",
+                ]
+            },
+
+        });
+    });
+</script>
+
+</html>
