@@ -53,7 +53,7 @@
                     "h1", "h2", "h3", "h4", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
                     "link", "image", "code", "preformatted-text", "code-block", "table", "html-entities", "|",
-                    "customText", "newpagelink", "newImage", "imageText", "|",
+                    "customText", "newpagelink", "newImage", "imageText", "fontRed", "|",
                     "goto-line", "fullscreen", "search", "||",
                     "help",
                 ]
@@ -61,12 +61,14 @@
             toolbarIconsClass: {
                 newpagelink: "fa-external-link",
                 newImage: "fa-file-image-o",
-                imageText: "fa-image"
+                imageText: "fa-image",
+                fontRed: "fa-font"
             },
             toolbarIconTexts: {
                 newpagelink: "插入特殊连接",
                 newImage: "插入带连接图片",
-                imageText: "插入图片并附说明"
+                imageText: "插入图片并附说明",
+                fontRed: "文字标红"
             },
             toolbarCustomIcons: {
                 customText: "特色功能"
@@ -80,13 +82,25 @@
                 },
                 imageText: function() {
                     this.executePlugin("imageTextDialog", "image-text-dialog/image-text-dialog");
+                },
+                fontRed: function() {
+                    var cm = this.cm;
+                    var cursor = cm.getCursor();
+                    var selection = cm.getSelection();
+
+                    cm.replaceSelection("<font color='red'>" + selection + "</font>");
+
+                    if (selection === "") {
+                        cm.setCursor(cursor.line, cursor.ch + 2);
+                    }
                 }
             },
             lang: {
                 toolbar: {
                     newpagelink: "新页面连接",
                     newImage: "图片连接",
-                    imageText: "插入图片并附说明"
+                    imageText: "插入图片并附说明",
+                    fontRed: "文字标红"
                 },
                 dialog: {
                     newPageLink: {
