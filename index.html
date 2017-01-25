@@ -26,6 +26,9 @@
 #### 插入含连接的图片
 可以在打开的对话框中输入连接、标题、图片地址、图片描述生成对应代码。
 需要注意的是，此连接的会生成在文章尾部，需要自行复制到适当位置。
+#### 插入含描述的图片
+可以在打开的对话框中输入图片地址、图片描述生成对应代码。
+需要注意的是，此连接的会生成在文章尾部，需要自行复制到适当位置。
 ### 反馈
 如果有更多功能请发邮件给我，地址： `xiqingongzi(at)gmail.com`
 将`(at)`换为`@`
@@ -50,18 +53,20 @@
                     "h1", "h2", "h3", "h4", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
                     "link", "image", "code", "preformatted-text", "code-block", "table", "html-entities", "|",
-                    "customText", "newpagelink", "newImage", "|",
+                    "customText", "newpagelink", "newImage", "imageText", "|",
                     "goto-line", "fullscreen", "clear", "search", "||",
                     "help",
                 ]
             },
             toolbarIconsClass: {
                 newpagelink: "fa-external-link",
-                newImage: "fa-file-image-o"
+                newImage: "fa-file-image-o",
+                imageText: "fa-image"
             },
             toolbarIconTexts: {
                 newpagelink: "插入特殊连接", // 如果没有图标，则可以这样直接插入内容，可以是字符串或HTML标签
-                newImage: "插入带连接图片"
+                newImage: "插入带连接图片",
+                imageText: "插入图片并附说明"
             },
             toolbarCustomIcons: {
                 customText: "特色功能"
@@ -72,12 +77,16 @@
                 },
                 newImage: function() {
                     this.executePlugin("linkImageDialog", "image-link-dialog/image-link-dialog");
+                },
+                imageText: function() {
+                    this.executePlugin("imageTextDialog", "image-text-dialog/image-text-dialog");
                 }
             },
             lang: {
                 toolbar: {
                     newpagelink: "新页面连接",
-                    newImage: "图片连接"
+                    newImage: "图片连接",
+                    imageText: "插入图片并附说明"
                 },
                 dialog: {
                     newPageLink: {
@@ -98,6 +107,14 @@
                         altEmpty: "错误,图片描述不能为空",
                         nameEmpty: "错误：链接的名称不能为空。",
                         urlEmpty: "错误：请填写链接的URL地址。"
+                    },
+                    imageText: {
+                        title: "添加图片",
+                        imageUrl: "图片地址",
+                        imageAlt: "图片描述",
+                        imageEmpty: "错误:图片地址不能为空",
+                        altEmpty: "错误,图片描述不能为空",
+
                     }
                 }
             },
