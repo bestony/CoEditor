@@ -33,6 +33,9 @@
 需要注意的是，此连接的会生成在文章尾部，需要自行复制到适当位置。
 #### 选中文字标红
 选择要标红的文字，点击特色功能区的按钮，即可对指定文字进行标红处理。
+#### 快速打开图床
+编辑器未做图片上传，故而提供了一个图床的地址，可以将图片上传到sm.ms，复制其生成的图片的连接，使用菜单栏中的工具添加即可。
+
 ### 反馈
 如果有更多功能请发邮件给我，地址： `xiqingongzi(at)gmail.com`
 将`(at)`换为`@`
@@ -57,7 +60,7 @@
                     "h1", "h2", "h3", "h4", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
                     "link", "image", "code", "preformatted-text", "code-block", "table", "html-entities", "|",
-                    "customText", "newpagelink", "newImage", "imageText", "fontRed", "|",
+                    "customText", "newpagelink", "newImage", "imageText", "fontRed", "imageWebSite", "|",
                     "goto-line", "fullscreen", "search", "||",
                     "help",
                 ]
@@ -66,16 +69,18 @@
                 newpagelink: "fa-external-link",
                 newImage: "fa-file-image-o",
                 imageText: "fa-image",
-                fontRed: "fa-font"
+                fontRed: "fa-font",
+                imageWebSite: "fa-link",
             },
             toolbarIconTexts: {
                 newpagelink: "插入特殊连接",
                 newImage: "插入带连接图片",
                 imageText: "插入图片并附说明",
-                fontRed: "文字标红"
+                fontRed: "文字标红",
+                imageWebSite: "图床"
             },
             toolbarCustomIcons: {
-                customText: "特色功能"
+                customText: "特色功能",
             },
             toolbarHandlers: {
                 newpagelink: function() {
@@ -97,6 +102,9 @@
                     if (selection === "") {
                         cm.setCursor(cursor.line, cursor.ch + 2);
                     }
+                },
+                imageWebSite: function() {
+                    window.open("https://sm.ms")
                 }
             },
             lang: {
@@ -104,7 +112,8 @@
                     newpagelink: "新页面连接",
                     newImage: "图片连接",
                     imageText: "插入图片并附说明",
-                    fontRed: "文字标红"
+                    fontRed: "文字标红",
+                    imageWebSite: "图床",
                 },
                 dialog: {
                     newPageLink: {
