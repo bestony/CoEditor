@@ -21,9 +21,11 @@
 
 ### 功能说明
 #### 插入新窗口打开连接
-可以在打开的对话框中输入连接的标题和连接。自动生成一个基于HTML的新页面打开连接
+可以在打开的对话框中输入标题和连接。自动生成一个基于HTML的新页面打开连接
 需要注意的是，此连接的会生成在文章尾部，需要自行复制到适当位置。
-
+#### 插入含连接的图片
+可以在打开的对话框中输入连接、标题、图片地址、图片描述生成对应代码。
+需要注意的是，此连接的会生成在文章尾部，需要自行复制到适当位置。
 ### 反馈
 如果有更多功能请发邮件给我，地址： `xiqingongzi(at)gmail.com`
 将`(at)`换为`@`
@@ -41,30 +43,41 @@
             height: 768,
             editorTheme: "neo",
             path: "lib/",
+            htmlDecode: true,
             toolbarIcons: function() {
                 return ["undo", "redo", "|",
                     "bold", "del", "italic", "quote", "|",
                     "h1", "h2", "h3", "h4", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
-                    "link", "newpagelink", "image", "code", "preformatted-text", "code-block", "table", "html-entities", "|",
+                    "link", "image", "code", "preformatted-text", "code-block", "table", "html-entities", "|",
+                    "customText", "newpagelink", "newImage", "|",
                     "goto-line", "fullscreen", "clear", "search", "||",
                     "help",
                 ]
             },
             toolbarIconsClass: {
-                newpagelink: "fa-link" // 指定一个FontAawsome的图标类
+                newpagelink: "fa-external-link",
+                newImage: "fa-file-image-o"
             },
             toolbarIconTexts: {
-                newpagelink: "插入特殊连接" // 如果没有图标，则可以这样直接插入内容，可以是字符串或HTML标签
+                newpagelink: "插入特殊连接", // 如果没有图标，则可以这样直接插入内容，可以是字符串或HTML标签
+                newImage: "插入带连接图片"
+            },
+            toolbarCustomIcons: {
+                customText: "特色功能"
             },
             toolbarHandlers: {
                 newpagelink: function() {
                     this.executePlugin("targetLinkDialog", "target-link-dialog/target-link-dialog");
+                },
+                newImage: function() {
+                    this.executePlugin("linkImageDialog", "image-link-dialog/image-link-dialog");
                 }
             },
             lang: {
                 toolbar: {
                     newpagelink: "新页面连接",
+                    newImage: "图片连接"
                 },
                 dialog: {
                     newPageLink: {
@@ -75,6 +88,17 @@
                         nameEmpty: "错误：链接的名称不能为空。",
                         urlEmpty: "错误：请填写链接的URL地址。"
                     },
+                    imageLink: {
+                        title: "添加图片连接",
+                        imageUrl: "图片地址",
+                        imageAlt: "图片描述",
+                        url: "链接地址",
+                        urlTitle: "链接标题",
+                        imageEmpty: "错误:图片地址不能为空",
+                        altEmpty: "错误,图片描述不能为空",
+                        nameEmpty: "错误：链接的名称不能为空。",
+                        urlEmpty: "错误：请填写链接的URL地址。"
+                    }
                 }
             },
 
