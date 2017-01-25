@@ -19,8 +19,17 @@
 1. 满足运营者常用功能需求(H1-H6)
 2. 提供插入新窗口打开连接的功能。
 
-### FeedBack
-Send Mail To `xiqingongzi@gmail.com`</textarea>
+### 功能说明
+#### 插入新窗口打开连接
+可以在打开的对话框中输入连接的标题和连接。自动生成一个基于HTML的新页面打开连接
+需要注意的是，此连接的会生成在文章尾部，需要自行复制到适当位置。
+
+### 反馈
+如果有更多功能请发邮件给我，地址： `xiqingongzi(at)gmail.com`
+将`(at)`换为`@`
+
+邮件title：运营编辑器-反馈/建议-具体内容
+邮件内容：反馈-建议具体内容。</textarea>
     </div>
 </body>
 <script src="js/jquery.min.js"></script>
@@ -37,10 +46,36 @@ Send Mail To `xiqingongzi@gmail.com`</textarea>
                     "bold", "del", "italic", "quote", "|",
                     "h1", "h2", "h3", "h4", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "code", "preformatted-text", "code-block", "table", "html-entities", "|",
+                    "link", "newpagelink", "image", "code", "preformatted-text", "code-block", "table", "html-entities", "|",
                     "goto-line", "watch", "preview", "fullscreen", "clear", "search", "||",
                     "help",
                 ]
+            },
+            toolbarIconsClass: {
+                newpagelink: "fa-link" // 指定一个FontAawsome的图标类
+            },
+            toolbarIconTexts: {
+                newpagelink: "插入特殊连接" // 如果没有图标，则可以这样直接插入内容，可以是字符串或HTML标签
+            },
+            toolbarHandlers: {
+                newpagelink: function() {
+                    this.executePlugin("targetLinkDialog", "target-link-dialog/target-link-dialog");
+                }
+            },
+            lang: {
+                toolbar: {
+                    newpagelink: "新页面连接",
+                },
+                dialog: {
+                    newPageLink: {
+                        title: "添加新页面打开链接",
+                        name: "连接名称",
+                        url: "链接地址",
+                        urlTitle: "链接标题",
+                        nameEmpty: "错误：链接的名称不能为空。",
+                        urlEmpty: "错误：请填写链接的URL地址。"
+                    },
+                }
             },
 
         });
